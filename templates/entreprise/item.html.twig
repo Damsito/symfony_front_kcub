@@ -1,3 +1,5 @@
+{% trans_default_domain 'entreprise' %}
+
 <tr>
     <td class="entreprise_raison_cell">
         <a>{{
@@ -33,6 +35,9 @@
         {% if not entreprise.services|length  %}
         <form {{ stimulus_controller('submit-confirm') }}
                 data-action="submit-confirm#onSubmit"
+                data-title="{{ "question_delete_entreprise"|trans }}"
+                data-confirm="{{ "oui"|trans({}, 'messages') }}"
+                data-cancel="{{ "non"|trans({}, 'messages') }}"
                 data-path="{{ path('entreprise_delete', {id: entreprise.id}) }}"
         >
             <button

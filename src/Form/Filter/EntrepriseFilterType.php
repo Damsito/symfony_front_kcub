@@ -31,7 +31,10 @@ class EntrepriseFilterType extends AbstractType
             ])
             ->add('recherche', TextType::class, [
                 'label' => false,
-                'required' => false
+                'required' => false,
+                'attr' => [
+                    'placeholder' => $this->translator->trans('rechercher')
+                ]
             ])
         ;
     }

@@ -27,7 +27,10 @@ class ContactEntrepriseFilterType extends AbstractType
             ])
             ->add('recherche', TextType::class, [
                 'required' => false,
-                'label' => false
+                'label' => false,
+                'attr' => [
+                    'placeholder' => $this->translator->trans('rechercher')
+                ]
             ])
         ;
     }

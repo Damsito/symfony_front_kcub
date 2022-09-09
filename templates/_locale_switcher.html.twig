@@ -1,0 +1,14 @@
+{% set route = app.request.attributes.get('_route') %}
+{% set route_params = app.request.attributes.get('_route_params') %}
+{% set params = route_params|merge(app.request.query.all) %}
+{% block stylesheets %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+<input id="select-lang"
+       data-locale="{{ app.request.locale }}"
+       data-fr="{{ path(route, params|merge({'_locale': 'fr'})) }}"
+       data-en="{{ path(route, params|merge({'_locale': 'en'})) }}"
+/>
+{% block javascripts %}
+    {{ encore_entry_script_tags('locale') }}
+{% endblock %}

@@ -8,3 +8,5 @@ incoherences_interlocuteur_one: "Une incohérence a été trouvée sur vos servi
 incoherences_validateur_aucune: "Aucune incohérence n'a été trouvée sur l'ensemble des services"
 incoherences_validateur_one: "Une incohérence a été trouvée sur l'ensemble des services"
 details_alerte: "Détails Alerte"
+alertes: "Alertes"
+interlocuteur: "Interlocuteur RUN"

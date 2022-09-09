@@ -22,7 +22,7 @@ class AlerteController extends AbstractController
         );
         return $this->render('alerte/index.html.twig', [
             'services' => $pagination,
-            'errors' => $alertes['errors'],
+            'errors' => $alertes['errors'] ?? 0,
         ]);
     }
 }

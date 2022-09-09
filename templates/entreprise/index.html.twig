@@ -7,10 +7,10 @@
         <div class="container-perso">
             <div class="row">
                 <div class="d-flex">
-                    <h1>{{ "entreprises"|trans }}</h1>
+                    <h1>{{ "entreprises"|trans({}, "menu") }}</h1>
                     <div class="ms-auto d-flex my-auto">
                         <div class="d-flex my-auto">
-                            <h4 class="mt-auto mb-auto me-4">{{ "filtrer"|trans }}</h4>
+                            <h4 class="mt-auto mb-auto me-4">{{ "filtrer"|trans({}, 'messages') }}</h4>
                             {{ form_start(form, {'attr': {'class': 'd-flex w-100 align-items-center'}}) }}
                             {{ form_row(form.type, {'attr': {'class': 'me-2 form-select-perso w-auto my-auto'}}) }}
                             {{ form_row(form.recherche, {'attr': {'class': ' my-auto form-control'}}) }}
@@ -29,51 +29,60 @@
                 </div>
             </div>
             <div>
-                <table class="table" id="entreprise_table">
-                    <thead>
-                    <tr>
-                        <th class="title entreprise_raison_cell" scope="col">
-                            {{ "raison_sociale"|trans }}
-                        </th>
-                        <th class="title entreprise_siret_cell" scope="col">
-                            {{ "siren"|trans }}
-                        </th>
-                        <th class="title entreprise_type_cell" scope="col">
-                            {{ "type"|trans }}
-                        </th>
-                        <th class="entreprise_checkbox_cell">
-                            <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    id="entreprise_checkbox_all_delete"
-                            />
-                        </th>
-                        <th class="entreprise_edit_cell"></th>
-                        <th class="entreprise_trash_cell">
-                            <form
-                                    {{ stimulus_controller('submit-confirm') }}
-                                    data-action="submit-confirm#onSubmitMultiple"
-                                    data-path="{{ path('entreprise_delete_multiple') }}"
-                            >
-                            <button
-                                    type="submit"
-                                    class="btn-trash"
-                            >
-                                {% include 'icons/trash.html.twig' %}
+                {% if entreprises|length > 0 %}
+                    <table class="table" id="table">
+                        <thead>
+                        <tr>
+                            <th class="title entreprise_raison_cell" scope="col">
+                                {{ "raison_sociale"|trans }}
+                            </th>
+                            <th class="title entreprise_siret_cell" scope="col">
+                                {{ "siren"|trans }}
+                            </th>
+                            <th class="title entreprise_type_cell" scope="col">
+                                {{ "type"|trans }}
+                            </th>
+                            <th class="entreprise_checkbox_cell">
+                                <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        id="entreprise_checkbox_all_delete"
+                                />
+                            </th>
+                            <th class="entreprise_edit_cell"></th>
+                            <th class="entreprise_trash_cell">
+                                <form
+                                        {{ stimulus_controller('submit-confirm') }}
+                                        data-action="submit-confirm#onSubmitMultiple"
+                                        data-title="{{ "question_delete_multiple_entreprises"|trans }}"
+                                        data-confirm="{{ "oui"|trans({}, 'messages') }}"
+                                        data-cancel="{{ "non"|trans({}, 'messages') }}"
+                                        data-path="{{ path('entreprise_delete_multiple') }}"
+                                >
+                                    <button
+                                            type="submit"
+                                            class="btn-trash"
+                                            id="trash"
+                                    >
+                                        {% include 'icons/trash.html.twig' %}
 
-                            </button>
-                            </form>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for entreprise in entreprises %}
-                        {% include "/entreprise/item.html.twig" with entreprise %}
-                    {% endfor %}
-                    </tbody>
-                </table>
+                                    </button>
+                                </form>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for entreprise in entreprises %}
+                            {% include "/entreprise/item.html.twig" with entreprise %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                        <h1 class="mt-3 text-center">
+                            {{ "aucune_entreprise"|trans }}
+                        </h1>
+                {% endif %}
                 {% include 'pagination/pagination.html.twig' with pages %}
-
             </div>
         </div>
     {% block javascripts %}

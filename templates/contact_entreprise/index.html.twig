@@ -20,72 +20,83 @@
             </div>
         </div>
         <div>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th class="title ce_nom_prenom_cell" scope="col">
-                        <div class="d-flex">
-                            {{ "nom"|trans }} - {{ "prenom"|trans }}
-                            <button id="button_sort" type="submit" class="d-none"></button>
-                            {{ form_end(formSort) }}
-                            {% set sort = app.request.query.get('sort', 'asc') %}
-                            <button id="sort" class="d-flex ms-1">
-                                {% if sort == 'asc' %}
-                                    <img
-                                            src="{{ asset('/images/sort-up.png') }}"
-                                            alt="sort"
-                                    />
-                                {% else %}
-                                    <img
-                                            src="{{ asset('/images/sort-down.png') }}"
-                                            alt="sort"
-                                    />
-                                {% endif %}
-                            </button>
-                        </div>
-                    </th>
-                    <th class="title ce_email_cell" scope="col">Email</th>
-                    <th class="title ce_entreprise_cell" scope="col">
-                        {{ "entreprise"|trans }}
-                    </th>
-                    <th class="title ce_fonction_cell">
-                        {{ "fonction"|trans }}
-                    </th>
-                    <th class="ce_edit_cell"></th>
-                    <th class="ce_checkbox_cell">
-                        <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="contact_externe_checkbox_check_all"
-                        />
-                    </th>
-                    <th class="ce_trash_cell">
-                        <button
-                                class="btn-trash"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modalDeleteMultipleContact"
+            {% if contacts|length > 0 %}
+                <table class="table" id="contact_entreprise_table">
+                    <thead>
+                    <tr>
+                        <th class="title ce_nom_prenom_cell" scope="col">
+                            <div class="d-flex">
+                                {{ "nom"|trans }} - {{ "prenom"|trans }}
+                                <button id="button_sort" type="submit" class="d-none"></button>
+                                {{ form_end(formSort) }}
+                                {% set sort = app.request.query.get('sort', 'asc') %}
+                                <button id="sort" class="d-flex ms-1">
+                                    {% if sort == 'asc' %}
+                                        <img
+                                                src="{{ asset('/images/sort-up.png') }}"
+                                                alt="sort"
+                                        />
+                                    {% else %}
+                                        <img
+                                                src="{{ asset('/images/sort-down.png') }}"
+                                                alt="sort"
+                                        />
+                                    {% endif %}
+                                </button>
+                            </div>
+                        </th>
+                        <th class="title ce_email_cell" scope="col">Email</th>
+                        <th class="title ce_entreprise_cell" scope="col">
+                            {{ "entreprise"|trans }}
+                        </th>
+                        <th class="title ce_fonction_cell">
+                            {{ "fonction"|trans }}
+                        </th>
+                        <th class="ce_edit_cell"></th>
+                        <th class="ce_checkbox_cell">
+                            <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="contact_externe_checkbox_check_all"
+                            />
+                        </th>
+                        <th class="ce_trash_cell">
+                            <form
+                                    {{ stimulus_controller('submit-confirm') }}
+                                    data-action="submit-confirm#onSubmitMultiple"
+                                    data-path="{{ path('entreprise_delete_multiple') }}"
+                            >
+                                <button
+                                        type="submit"
+                                        class="btn-trash"
+                                >
+                                    {% include 'icons/trash.html.twig' %}
 
-                        >
-                            {% include 'icons/trash.html.twig' %}
+                                </button>
+                            </form>
+                        </th>
+                        <th class="ce_email_icon_cell">
+                            <a
+                                    id="mail-all-contact"
+                            >
+                                {% include 'icons/email.html.twig' %}
 
-                        </button>
-                    </th>
-                    <th class="ce_email_icon_cell">
-                        <a
-                                id="mail-all-contact"
-                        >
-                            {% include 'icons/email.html.twig' %}
+                            </a>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for contact in contacts %}
+                        {% include "/contact_entreprise/item-list.html.twig" with contact %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                    <h1 class="mt-3 text-center">
+                        {{ "aucun_contact_entreprise"|trans }}
+                    </h1>
+            {% endif %}
 
-                        </a>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for contact in contacts %}
-                    {% include "/contact_entreprise/item-list.html.twig" with contact %}
-                {% endfor %}
-                </tbody>
-            </table>
             {% include 'pagination/pagination.html.twig' with pages %}
 
         </div>

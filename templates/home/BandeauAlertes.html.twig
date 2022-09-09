@@ -1,10 +1,31 @@
 
 {% trans_default_domain 'alerte' %}
-
+<style lang="scss">
+  p {
+    margin: 0 !important;
+    padding: 20px;
+  }
+  .interlocuteur p {
+    color: red;
+  }
+  .validateur p {
+    color: orange;
+  }
+  .border-bandeau {
+    border: 0.3rem solid #000 !important;
+  }
+  .border-validateur {
+    border: 0.3rem solid orange !important;
+  }
+  .border-interlocuteur {
+    border-color: red!important;
+  }
+  .border-validateur {
+    border-color: orange!important;
+  }
+</style>
 <div
-        class="w-100 mx-auto position-relative border-bandeau"
-        :class="{
-    }"
+        class="w-100 mx-auto position-relative border-bandeau border-interlocuteur"
         style="height: 4rem"
 >
     <div class="text-center interlocuteur">
