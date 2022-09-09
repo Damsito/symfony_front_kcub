@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'alerte' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <div class="lastPart col pb-1">
+        <div class="container-perso">
+            <div class="row detail_top">
+                <div class="d-flex">
+                    <h1>{{ "details_alerte"|trans }}</h1>
+                    <div class="d-flex ms-auto">
+                        <a
+                                class="btn btn-default btn-orange"
+                        >
+                            <span>{{ "ajouter_service"|trans({}, "home") }}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="container-perso">
+                {% include 'home/BandeauAlertes.html.twig' with {"errors": errors} %}
+                {% include 'alerte/liste.html.twig' with {"services": services} %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

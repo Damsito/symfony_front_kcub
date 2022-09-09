@@ -1,0 +1,24 @@
+{% trans_default_domain 'alerte' %}
+
+<tr>
+    <td class="services_alertes_code">
+        <a
+        >{{ service.code }} - {{ service.libelle }}</a
+        >
+    </td>
+    <td class="services_alertes_alertes">
+        <ul>
+            {% for alerte in service.alertes %}
+                <li>{{ alerte|trans }}</li>
+            {% endfor %}
+        </ul>
+    </td>
+    <td class="services_alertes_interlocuteur">
+        -
+    </td>
+    <td class="service_admin_to_activate_edition_cell">
+        <a type="button" class="btn-update">
+            e
+        </a>
+    </td>
+</tr>

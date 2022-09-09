@@ -1,0 +1,28 @@
+
+{% trans_default_domain 'alerte' %}
+
+<div
+        class="w-100 mx-auto position-relative border-bandeau"
+        :class="{
+    }"
+        style="height: 4rem"
+>
+    <div class="text-center interlocuteur">
+        {% if errors == 0 %}
+            <p>{{ "incoherences_interlocuteur_aucune"|trans }}</p>
+        {% elseif errors == 1 %}
+            <p>{{ "incoherences_interlocuteur_one" | trans }}</p>
+        {% else %}
+            <p v-else>{{ "incoherences_interlocuteur_multiple"|trans({'errors': errors} ) }}</p>
+        {% endif %}
+    </div>
+{#    <div class="text-center validateur" >#}
+{#        <p v-if="errors === 0">{{ $t("incoherences_validateur_aucune") }}</p>#}
+{#        <p v-else-if="errors === 1">#}
+{#            {{ $t("incoherences_validateur_one", { errors: errors }) }}#}
+{#        </p>#}
+{#        <p v-else>#}
+{#            {{ $t("incoherences_validateur_multiple", { errors: errors }) }}#}
+{#        </p>#}
+{#    </div>#}
+</div>

@@ -1,0 +1,39 @@
+<tr>
+    <td class="entreprise_raison_cell">
+        <a>{{
+            entreprise.raisonSociale
+            }}</a>
+    </td>
+    <td class="entreprise_siret_cell">
+        {{ entreprise.siret }}
+    </td>
+    <td class="entreprise_type_cell">
+        {{ entreprise.type|upper }}
+    </td>
+    <td class="entreprise_checkbox_cell">
+        <input
+                class="checkbox_entreprise form-check-input"
+                value="{{ entreprise.id }}"
+                type="checkbox"
+                ref="checkbox"
+        />
+    </td>
+    <td class="entreprise_edit_cell">
+        <a
+                type="button"
+                class="btn-update"
+        >
+
+        </a>
+    </td>
+    <td class="entreprise_trash_cell">
+        <button
+                type="button"
+                class="btn-trash"
+                data-bs-toggle="modal"
+                data-bs-target="#myModal"
+        >
+
+        </button>
+    </td>
+</tr>

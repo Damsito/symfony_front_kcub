@@ -1,0 +1,19 @@
+{% trans_default_domain 'home' %}
+
+<div class="card-home service-actif">
+    <div class="card-header-home">
+        <div class="card-header-home-padding">
+            {{ 'service_actif'|trans }}
+        </div>
+    </div>
+    <div class="card-number">
+        <div class="card-number-padding">{{ services|length }}</div>
+    </div>
+    <div class="card-footer-home">
+        <div class="card-footer-home-padding bg-supporting-green active-services">
+            <a id="service_actif" >{{
+                'voir_services'|trans
+                }}</a>
+        </div>
+    </div>
+</div>

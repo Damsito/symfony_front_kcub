@@ -1,0 +1,74 @@
+.confluenceTable td {
+  width: 20vw;
+}
+
+.confluenceTable select {
+  border-radius: 6px;
+}
+
+.confluenceTable {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80vw !important;
+  margin-top: 1.5rem;
+}
+
+.confluenceTable tr th {
+  text-align: center;
+  background-color: #f16e00;
+  color: white;
+}
+
+th.confluenceTd,
+td.confluenceTd {
+  border: 1px solid #c1c7d0;
+  padding: 3px 4px 3px 4px;
+}
+
+.input-group > .form-control,
+.input-group > .form-select {
+  flex: none;
+  width: 50%;
+}
+
+.gtd {
+  display: flex;
+  align-items: center;
+}
+
+.gtd .w-100 {
+  display: flex;
+  width: 50% !important;
+}
+fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+}
+.input-group > .form-control {
+  flex: none;
+  width: 50%;
+}
+.input-group > .form-control {
+  position: relative;
+  flex: 1 1 auto;
+  width: 5%;
+  min-width: 0;
+}
+.gtd .w-100 label {
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+.gtd .w-100 input {
+  margin-left: 15px;
+  width: 70% !important;
+}

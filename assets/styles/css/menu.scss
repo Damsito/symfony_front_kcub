@@ -1,0 +1,98 @@
+
+.btn-menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #000;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 0.125rem solid transparent;
+  outline-offset: 0.3125rem;
+  --o-icon-spacing: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0;
+  transition: outline-offset 0.2s ease-in-out;
+}
+.bd-links {
+  overflow: auto;
+  font-weight: 700;
+}
+.bd-links .show-fleche .btn-menu[aria-expanded="true"]::after {
+  transform: scale(calc(6 / 7)) rotate(180deg);
+}
+.bd-links .show-fleche .btn-menu[aria-expanded="false"]::after {
+  transform: scale(calc(6 / 7));
+}
+.bd-links .show-fleche .btn-menu::after {
+  display: inline-block;
+  align-self: center;
+  margin: 0 0.625rem 0 auto;
+  content: "";
+  border-top: 0.4375rem solid;
+  border-right: 0.4375rem solid transparent;
+  border-bottom: 0;
+  border-left: 0.4375rem solid transparent;
+  transform: translateY(0.0625rem);
+}
+$border-color: #ccc;
+@mixin bordering {
+  @for $i from 1 through 6 {
+    &:nth-child(#{$i}) {
+      border-bottom: 0.125rem solid $border-color ;
+    }
+  }
+}
+#ul_menu {
+  border-right: 0.125rem solid $border-color ;
+  border-left: 0.125rem solid $border-color ;
+  border-top: 0.125rem solid $border-color ;
+}
+.sous_menu li {
+  border-top: 0.125rem solid $border-color!important; ;
+}
+.sous_menu li:last-child {
+  border-top: 0!important;
+}
+#ul_menu li{
+  @include bordering;
+}
+#menu li:hover{
+  background-color: #f16e00 !important;
+}
+#menu li a {
+  color: black!important;
+}
+.show-fleche {
+  border-bottom: none!important;
+}
+.show-fleche:hover #collapse-externe, .show-fleche:hover #collapse-interne {
+  background-color: white !important;
+}
+
+#collapse-externe li, #collapse-interne li {
+  border: none;
+}
+
+
+@media (min-width: 768px)
+{
+  .bd-links {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10rem;
+    display: block !important;
+    height: calc(100vh - 10rem);
+    padding-left: 0.25rem;
+    margin-left: -0.25rem;
+    overflow-y: auto;
+  }
+}

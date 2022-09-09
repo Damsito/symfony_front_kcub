@@ -1,0 +1,13 @@
+export const accueil = {
+  ajouter_service: "Ajouter un service",
+  modifier_service: "Modifier le service",
+  voir_services: "Voir les services",
+  service_a_desactiver: "Services à désactiver",
+  service_en_attente_desactivation: "Services en attente de désactivation",
+  service_en_attente_activation: "Services en attente d'activation",
+  service_a_activer: "Services à activer",
+  service_cree_non_active: "Services créés non activés",
+  service_desactive: "Services désactivés",
+  alertes: "Alertes",
+  service_actif: "Services actifs",
+};

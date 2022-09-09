@@ -1,0 +1,46 @@
+
+.table > :not(caption) > * > * {
+  padding-left: 0 !important;
+}
+.table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-bottom: 0!important;
+}
+.btn-trash, .btn-update, .btn-add{
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+table img {
+  width: 25px;
+}
+a {
+  cursor: pointer;
+}
+table img:hover {
+  opacity: 0.9;
+}
+
+.list-group img {
+  width: 31px;
+  height: auto;
+}
+.input-sm {
+  height: 3.2rem;
+  padding: .5rem 1rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  border-radius: 0;
+}
+
+th{
+  justify-content: center;
+}
+td, th {
+  vertical-align: middle;
+}
+.title {
+  font-size: 1.2rem;
+}

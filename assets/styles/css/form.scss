@@ -1,0 +1,43 @@
+.form-error
+{
+  margin-top: 1rem;
+}
+.form-error p {
+  color: #cd3c14;
+  margin-bottom: 0!important;
+}
+#buttonSearch {
+  cursor: pointer;
+  margin-right: 8px;
+  width: 60px;
+  border: none;
+  background: transparent;
+}
+.form-select-perso
+{
+  display: block;
+  width: 100%;
+  padding: calc(0.5rem - 1px) 1.875rem calc(0.5rem + 1px) 0.625rem;
+  -moz-padding-start: calc(0.625rem - 3px);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #000;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 7'%3e%3cpath d='M7 7L0 0h14L7 7z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.625rem top calc(50% + 1px);
+  background-size: 0.875rem 1rem;
+  border: 0.125rem solid #ccc;
+  border-radius: 0;
+  transition: border-color 0.2s ease-in-out, outline-offset 0.2s ease-in-out;
+  appearance: none;
+}
+select{
+  z-index: 100;
+}
+.detail_label {
+  font-size: 1.2rem;
+  font-weight: 400;
+}

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'home' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+    <div class="lastPart col pb-1">
+        <div class="container-perso">
+            <div class="row detail_top">
+                <div class="d-flex">
+                    <h1>{{ "tableau_de_bord"|trans }}</h1>
+                    <div class="d-flex ms-auto">
+                        <a
+                                class="btn btn-default btn-orange"
+                        >
+                            <span>{{ "ajouter_service"|trans }}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+{#            <div v-if="statusServices === 'loading'">#}
+{#                <Spinner />#}
+{#            </div>#}
+{#            <div v-else-if="statusServices === 'error'">#}
+{#                <ErrorMessage :error-message="errorService" />#}
+{#            </div>#}
+            <div>
+                <div class="container-perso" >
+                    {% include 'home/BandeauAlertes.html.twig' with {"errors": errors} %}
+
+                    {#                    <BandeauAlerte :errors="services_with_alertes.errors" />#}
+                    <div class="row top-row justify-content-evenly">
+                        <div class="col-4">
+                            {% include 'home/cards/ServiceCree.html.twig' with {"services": services|filter((u) => u.etat == 'C')} %}
+                        </div>
+                        <div class="col-4">
+                            {% include 'home/cards/ServiceEnAttenteActivation.html.twig' with {"services": services|filter((u) => u.etat == 'WA')} %}
+                        </div>
+                        <div class="col-4">
+                            {% include 'home/cards/ServiceActif.html.twig' with {"services": services|filter((u) => u.etat == 'A')} %}
+                        </div>
+                        <div class="col-4">
+                            {% include 'home/cards/ServiceEnAttenteDesactivation.html.twig' with {"services": services|filter((u) => u.etat == 'WD')} %}
+                        </div>
+                        <div class="col-4">
+                            {% include 'home/cards/ServiceDesactive.html.twig' with {"services": services|filter((u) => u.etat == 'D')} %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

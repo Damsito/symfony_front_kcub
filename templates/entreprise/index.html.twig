@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EntrepriseController!{% endblock %}
+
+{% block body %}
+    <div class="lastPart col">
+        <div class="container-perso">
+            <div class="row">
+                <div class="d-flex">
+                    <h1>{{ "entreprises"|trans }}</h1>
+                    <div class="ms-auto d-flex my-auto">
+                        <div class="d-flex my-auto">
+                            <h4 class="mt-auto mb-auto me-4">{{ "filtrer"|trans }}</h4>
+                            {{ form_start(form, {'attr': {'class': 'd-flex w-100 align-items-center'}}) }}
+                            {{ form_row(form.type, {'attr': {'class': 'me-2 form-select-perso w-auto my-auto'}}) }}
+                            {{ form_row(form.recherche, {'attr': {'class': ' my-auto form-control'}}) }}
+                            <button id="buttonSearch" type="submit">
+                                <img src="{{ asset('/images/icons/search.png') }}" alt="recherche" />
+                            </button>
+                            {{ form_end(form) }}
+                        </div>
+
+                        <a
+                                class="btn btn-default btn-orange"
+                        >
+                            <span>{{ "ajouter_entreprise"|trans }}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="title entreprise_raison_cell" scope="col">
+                            {{ "raison_sociale"|trans }}
+                        </th>
+                        <th class="title entreprise_siret_cell" scope="col">
+                            {{ "siren"|trans }}
+                        </th>
+                        <th class="title entreprise_type_cell" scope="col">
+                            {{ "type"|trans }}
+                        </th>
+                        <th class="entreprise_checkbox_cell">
+                            <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="entreprise_checkbox_all_delete"
+                            />
+                        </th>
+                        <th class="entreprise_edit_cell"></th>
+                        <th class="entreprise_trash_cell">
+                            <button
+                                    class="btn-trash"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#myModalMultiple"
+                            >
+
+                            </button>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for entreprise in entreprises %}
+                        {% include "/entreprise/item.html.twig" with entreprise %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% include 'pagination/pagination.html.twig' with pages %}
+
+            </div>
+        </div>
+    </div>
+    {% block javascripts %}
+        {{ parent() }}
+        <script defer type="application/javascript">
+            document.getElementById('entreprise_filter_type').addEventListener('change', function(e){
+                e.preventDefault()
+                document.getElementById('buttonSearch').click();
+            })
+        </script>
+        {% endblock %}
+{% endblock %}

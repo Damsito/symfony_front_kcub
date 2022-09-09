@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  apache:
+    build: .docker/apache
+    container_name: kcub_apache_front
+    ports:
+      - "8000:80"
+    volumes:
+      - .docker/apache/vhosts:/etc/apache2/sites-enabled
+      - .:/var/www
+    networks:
+      - dev
+networks:
+  dev:

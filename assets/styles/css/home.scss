@@ -1,0 +1,99 @@
+.btn-delete, .btn-add-client, .btn-add-service{
+  width: 200px;
+  margin-left: auto;
+  --bs-bg-opacity: 1;
+  color: #fff;
+  border: none;
+}
+
+.card-home {
+  display: flex;
+  flex-direction: column;
+  width: 24rem;
+  height: auto;
+  text-align: center;
+  color: black;
+  margin-top: 10px;
+}
+
+.card-header-home-padding {
+  text-align: center;
+  padding: 5px;
+  font-size: 1.55rem;
+  font-weight: bold;
+  height: 100%;
+}
+
+.card-footer-home-padding {
+  padding: 1.2rem;
+}
+
+.card-footer-home-padding a {
+  color: white;
+  font-size: 1.55rem;
+  font-weight: bolder;
+}
+
+.card-number {
+  border-top: none;
+  border-bottom: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-left: 1px solid rgba(0, 0, 0, 0.12) !important;
+}
+
+.card-header-home {
+  border-bottom: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-left: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.12) !important;
+  height: 5rem;
+}
+
+.card-number-padding {
+  height: 8rem;
+  font-size: 3.8rem;
+  padding: 1.5rem;
+  font-weight: bolder;
+}
+
+.to-activate {
+  border-bottom-color: #4bb4e6 !important;
+  border-left-color: #4bb4e6 !important;
+  border-right-color: #4bb4e6 !important;
+}
+
+.waiting-to-activate {
+  border-bottom-color: #f16e00 !important;
+  border-left-color: #f16e00 !important;
+  border-right-color: #f16e00 !important;
+}
+
+.active-services {
+  border-bottom-color: #50be87 !important;
+  border-left-color: #50be87 !important;
+  border-right-color: #50be87 !important;
+}
+
+.service-alert {
+  border-bottom-color: #ffd200 !important;
+  border-left-color: #ffd200 !important;
+  border-right-color: #ffd200 !important;
+}
+
+.not-active-services {
+  border-bottom-color: #000000 !important;
+  border-left-color: #000000 !important;
+  border-right-color: #000000 !important;
+}
+
+@media only screen and (max-width: 1470px) {
+  .col-4 {
+    width: 45% !important;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .col-4 {
+    width: 65% !important;
+  }
+}
