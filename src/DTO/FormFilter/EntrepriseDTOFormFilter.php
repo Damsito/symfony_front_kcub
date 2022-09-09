@@ -7,11 +7,10 @@ namespace App\DTO\FormFilter;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class EntrepriseDTOFormFilter
+class EntrepriseDTOFormFilter extends DTOFormFilter
 {
     private ?string $type = null;
     private ?string $recherche = null;
-    private int $page = 1;
 
     /**
      * @return string|null
@@ -54,19 +53,5 @@ class EntrepriseDTOFormFilter
         return $query;
     }
 
-    /**
-     * @return int
-     */
-    public function getPage(): int
-    {
-        return $this->page;
-    }
 
-    /**
-     * @param int $page
-     */
-    public function setPage(int $page): void
-    {
-        $this->page = $page;
-    }
 }

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
+{% trans_default_domain 'entreprise' %}
 
 {% block title %}Hello EntrepriseController!{% endblock %}
 
 {% block body %}
-    <div class="lastPart col">
         <div class="container-perso">
             <div class="row">
                 <div class="d-flex">
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div>
-                <table class="table">
+                <table class="table" id="entreprise_table">
                     <thead>
                     <tr>
                         <th class="title entreprise_raison_cell" scope="col">
@@ -50,13 +50,19 @@
                         </th>
                         <th class="entreprise_edit_cell"></th>
                         <th class="entreprise_trash_cell">
-                            <button
-                                    class="btn-trash"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#myModalMultiple"
+                            <form
+                                    {{ stimulus_controller('submit-confirm') }}
+                                    data-action="submit-confirm#onSubmitMultiple"
+                                    data-path="{{ path('entreprise_delete_multiple') }}"
                             >
+                            <button
+                                    type="submit"
+                                    class="btn-trash"
+                            >
+                                {% include 'icons/trash.html.twig' %}
 
                             </button>
+                            </form>
                         </th>
                     </tr>
                     </thead>
@@ -70,7 +76,6 @@
 
             </div>
         </div>
-    </div>
     {% block javascripts %}
         {{ parent() }}
         <script defer type="application/javascript">

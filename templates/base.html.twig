@@ -14,7 +14,19 @@
     <div class="mainContainer">
         <div class="myContent">
             {% include 'partials/menu.html.twig' %}
-            {% block body %}{% endblock %}
+            <div class="lastPart col pb-1">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                            <span class="alert-icon"><span class="visually-hidden">{{ label|capitalize }}</span></span>
+                            <p>{{ message }}</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"><span class="visually-hidden">Close</span></button>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% block body %}
+                {% endblock %}
+            </div>
         </div>
     </div>
     </body>

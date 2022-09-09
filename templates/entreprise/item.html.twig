@@ -11,29 +11,44 @@
         {{ entreprise.type|upper }}
     </td>
     <td class="entreprise_checkbox_cell">
+        {% if not entreprise.services|length  %}
         <input
                 class="checkbox_entreprise form-check-input"
                 value="{{ entreprise.id }}"
                 type="checkbox"
                 ref="checkbox"
         />
+        {% endif %}
+
     </td>
     <td class="entreprise_edit_cell">
         <a
                 type="button"
                 class="btn-update"
         >
-
+        {% include 'icons/edit.html.twig' %}
         </a>
     </td>
     <td class="entreprise_trash_cell">
-        <button
-                type="button"
-                class="btn-trash"
-                data-bs-toggle="modal"
-                data-bs-target="#myModal"
+        {% if not entreprise.services|length  %}
+        <form {{ stimulus_controller('submit-confirm') }}
+                data-action="submit-confirm#onSubmit"
+                data-path="{{ path('entreprise_delete', {id: entreprise.id}) }}"
         >
+            <button
+                    type="submit"
 
-        </button>
+                    class="btn-trash"
+            >
+                {% include 'icons/trash.html.twig' %}
+            </button>
+        </form>
+        {% endif %}
+
     </td>
 </tr>
+{% block javascripts %}
+    <script defer type="application/javascript">
+
+    </script>
+{% endblock %}

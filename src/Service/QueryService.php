@@ -17,6 +17,7 @@ class QueryService
 
     public function redirect(Request $request, $data): RedirectResponse
     {
+        $data->setPage(1);
         $arr_replace = array_replace($request->query->all(), $data->getQuery());
         $arr_filtered = array_filter($arr_replace, function($v, $k) {
             if($k === 'page'){

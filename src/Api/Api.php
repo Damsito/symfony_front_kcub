@@ -12,6 +12,7 @@ use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class Api
 {
@@ -50,11 +51,27 @@ class Api
         ]);
     }
 
-    public function getAll(string $url, $query = [])
+    /**
+     * @throws TransportExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws ClientExceptionInterface
+     */
+    public function getAll(string $url, $query = []): array
     {
         return $this->getClient()
             ->request(Request::METHOD_GET, $url . "?" . http_build_query($query))
             ->toArray();
+    }
+
+    /**
+     * @throws TransportExceptionInterface
+     */
+    public function delete(string $url): ResponseInterface
+    {
+        return $this->getClient()
+            ->request(Request::METHOD_DELETE, $url);
     }
 
     /**

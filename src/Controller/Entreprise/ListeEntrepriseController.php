@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Entreprise;
 
 use App\DTO\FormFilter\EntrepriseDTOFormFilter;
 use App\Form\Filter\EntrepriseFilterType;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class EntrepriseController extends AbstractController
+class ListeEntrepriseController extends AbstractController
 {
     public function __construct(private readonly EntrepriseStore $entrepriseStore,
     private readonly QueryService                                $queryService
@@ -20,7 +20,7 @@ class EntrepriseController extends AbstractController
     }
 
     #[Route('/entreprise', name: 'entreprise_list')]
-    public function index(Request $request, ): Response
+    public function index(Request $request): Response
     {
         $dto = new EntrepriseDTOFormFilter();
         $dto->setRecherche($request->query->get('recherche'));
@@ -30,7 +30,6 @@ class EntrepriseController extends AbstractController
         $formFilter->handleRequest($request);
         if($formFilter->isSubmitted() && $formFilter->isValid()){
             $data = $formFilter->getData();
-            $data->setPage(1);
             return $this->queryService->redirect($request, $data);
         }
         [$entreprises, $pages] = $this->entrepriseStore->getEntreprises();

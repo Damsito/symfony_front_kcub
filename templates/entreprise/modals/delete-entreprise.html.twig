@@ -1,0 +1,40 @@
+<div id="myModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <form class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ "question_delete_entreprise"|trans }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    <span class="visually-hidden">Close</span>
+                </button>
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                        type="button"
+                        class="btn btn-secondary"
+                        id="non"
+                >
+                    {{ "non"|trans }}
+                </button>
+                <button
+                        type="submit"
+                        class="btn btn-primary"
+                        id="oui"
+                >
+                    {{ "oui"|trans }}
+                </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% block javascripts %}
+    <script defer type="application/javascript">
+        document.getElementById('oui').addEventListener('click', function (e){
+            e.preventDefault()
+            let ids = localStorage.getItem('checkboxes')
+            $.DELETE('{{ path('entreprise_delete', {ids: ids}) }}')
+        })
+    </script>
+{% endblock %}

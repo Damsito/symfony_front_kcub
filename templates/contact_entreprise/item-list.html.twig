@@ -1,0 +1,52 @@
+<tr>
+    <td class="ce_nom_prenom_cell">
+        <a>{{ contact.nom }} {{ contact.prenom }}</a>
+    </td>
+    <td class="ce_email_cell">{{ contact.email }}</td>
+    <td
+            class="ce_entreprise_cell"
+    >
+        <a >
+            {{ contact.entreprise.raisonSociale }}
+        </a>
+    </td>
+    <td class="ce_fonction_cell">
+        {{ contact.fonction }}
+    </td>
+    <td class="ce_edit_cell">
+        <button
+                type="button"
+                data-bs-toggle="modal"
+                class="btn-update"
+                ref="button_edition"
+                :data-bs-target="f"
+        >
+            {% include 'icons/edit.html.twig' %}
+        </button>
+    </td>
+    <td class="ce_checkbox_cell">
+        <input
+                class="checkbox_entreprise form-check-input"
+                value="{{ contact.id }}"
+                type="checkbox"
+                ref="checkbox"
+
+        />
+    </td>
+    <td class="ce_trash_cell">
+        <button
+                type="button"
+                class="btn-trash"
+                data-bs-toggle="modal"
+                data-bs-target="#modalDeleteOneContact"
+        >
+            {% include 'icons/trash.html.twig' %}
+
+        </button>
+    </td>
+    <td class="ce_email_icon_cell">
+        <a href="{{ 'mailto:' ~ contact.email }}">
+            {% include 'icons/email.html.twig' %}
+        </a>
+    </td>
+</tr>

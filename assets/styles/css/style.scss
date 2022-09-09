@@ -113,3 +113,6 @@ a {
 #obs-link {
   margin-left: 2rem!important;
 }
+.alert {
+  padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x)!important;
+}
