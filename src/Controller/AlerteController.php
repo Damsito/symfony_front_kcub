@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\PaginationService;
 use App\Store\Alerte\AlerteStore;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,17 +13,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class AlerteController extends AbstractController
 {
     #[Route('/alertes', name: 'alerte')]
-    public function index(Request $request, AlerteStore $alerteStore, PaginatorInterface $paginator): Response
+    public function index(AlerteStore $alerteStore): Response
     {
-        $alertes = $alerteStore->getAlertes();
-        $pagination = $paginator->paginate(
-            $alertes['servicesWithAlertes'], /* query NOT result */
-            $request->query->getInt('page', 1), /*page number*/
-            1 /*limit per page*/
-        );
+        [$services, $errors, $pages] = $alerteStore->getAlertes();
         return $this->render('alerte/index.html.twig', [
-            'services' => $pagination,
-            'errors' => $alertes['errors'] ?? 0,
+            'services' => $services,
+            'errors' => $errors ?? 0,
+            'pages' => $pages
         ]);
     }
 }

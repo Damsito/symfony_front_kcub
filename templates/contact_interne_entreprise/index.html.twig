@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'contact_interne_entreprise' %}
+
+{% block title %}Hello EntrepriseController!{% endblock %}
+
+{% block body %}
+    <div class="container-perso">
+        <div class="row">
+            <div class="d-flex">
+                <h1>{{ "contact_interne_groupe"|trans }}</h1>
+                <div class="ms-auto d-flex my-auto">
+                    <div class="d-flex my-auto">
+                        {{ form_start(formSort, {'attr': {'class': 'd-flex w-100 align-items-center'}}) }}
+                        {{ form_row(formSort.recherche, {'attr': {'class': 'my-auto form-control' }}) }}
+                        <button id="buttonSearch">
+                            <img src="{{ asset('/images/icons/search.png') }}" alt="recherche" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            {% if contacts|length > 0 %}
+                <table class="table" id="table">
+                    <thead>
+                    <tr>
+                        <th class="title ce_nom_prenom_cell" scope="col">
+                            <div class="d-flex">
+                                {{ "nom"|trans }} - {{ "prenom"|trans }}
+                                <button id="button_sort" type="submit" class="d-none"></button>
+                                {{ form_end(formSort) }}
+                                {% set sort = app.request.query.get('sort', 'asc') %}
+                                <button id="sort" class="d-flex ms-1">
+                                    {% if sort == 'asc' %}
+                                        <img
+                                                src="{{ asset('/images/sort-up.png') }}"
+                                                alt="sort"
+                                        />
+                                    {% else %}
+                                        <img
+                                                src="{{ asset('/images/sort-down.png') }}"
+                                                alt="sort"
+                                        />
+                                    {% endif %}
+                                </button>
+                            </div>
+                        </th>
+                        <th class="title ce_email_cell" scope="col">Email</th>
+                        <th class="title ce_entreprise_cell" scope="col">
+                            {{ "filiale"|trans }}
+                        </th>
+                        <th class="title ce_fonction_cell">
+                            {{ "fonction"|trans }}
+                        </th>
+                        <th class="ce_edit_cell"></th>
+                        <th class="ce_checkbox_cell">
+                            <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="checkbox_all_delete"
+                            />
+                        </th>
+                        <th class="ce_trash_cell">
+                            <form
+                                    {{ stimulus_controller('submit-confirm') }}
+                                    data-action="submit-confirm#onSubmitMultiple"
+                                    data-path="{{ path('entreprise_delete_multiple') }}"
+                            >
+                                <button
+                                        type="submit"
+                                        class="btn-trash"
+                                >
+                                    {% include 'icons/trash.html.twig' %}
+
+                                </button>
+                            </form>
+                        </th>
+                        <th class="ce_email_icon_cell">
+                            <a
+                                    id="mail-all-contact"
+                            >
+                                {% include 'icons/email.html.twig' %}
+
+                            </a>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for contact in contacts %}
+                        {% include "/contact_interne_entreprise/item-list.html.twig" with contact %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                    <h1 class="mt-3 text-center">
+                        {{ "aucun_contact_entreprise"|trans }}
+                    </h1>
+            {% endif %}
+
+            {% include 'pagination/pagination.html.twig' with pages %}
+
+        </div>
+</div>
+    {% block javascripts %}
+        {{ parent() }}
+        <script defer type="application/javascript">
+            document.getElementById('sort').addEventListener('click', function(e){
+                e.preventDefault()
+                document.getElementById('button_sort').click()
+            })
+            // document.getElementById('entreprise_filter_type').addEventListener('change', function(e){
+            //     e.preventDefault()
+            //     document.getElementById('buttonSearch').click();
+            // })
+        </script>
+        {% endblock %}
+{% endblock %}

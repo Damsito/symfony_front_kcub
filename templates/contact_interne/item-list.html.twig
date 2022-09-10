@@ -1,0 +1,63 @@
+<tr>
+    <td class="ci_nom_prenom_cell">
+        <a>{{ contact.nom }}</a>
+    </td>
+    <td class="ci_nom_prenom_cell">{{ contact.prenom }}</td>
+    <td
+            class="ci_type_cell"
+    >
+        <a >
+            {{ contact.type|upper }}
+        </a>
+    </td>
+    <td class="ci_services_associes_cell">
+        {% set length = contact.contactInterneServices|length %}
+        {{ length == 0
+        ? "aucun_service_associe"|trans
+        : (length == 1 ? "un_service_associe"|trans : "multiple_service_associes"|trans) }}
+    </td>
+    <td class="ci_active_cell">
+        {% if contact.isActif %}
+            <img src="{{ asset('/images/icons/pastille-verte.png') }}"
+                    alt="actif"
+            />
+            {% else %}
+                <img  src="{{ asset('/images/icons/pastille-rouge.png') }}" alt="inactif" />
+
+        {% endif %}
+
+    </td>
+    <td class="ci_replace_cell">
+        {% include 'icons/replace.html.twig' %}
+    </td>
+    <td class="ce_edit_cell">
+        <button
+                type="button"
+                data-bs-toggle="modal"
+                class="btn-update"
+                ref="button_edition"
+                :data-bs-target="f"
+        >
+            {% include 'icons/edit.html.twig' %}
+        </button>
+    </td>
+    <td class="ce_checkbox_cell">
+        <input
+                class="checkbox_entreprise form-check-input"
+                value="{{ contact.cuid }}"
+                type="checkbox"
+                ref="checkbox"
+        />
+    </td>
+    <td class="ce_trash_cell">
+        <button
+                type="button"
+                class="btn-trash"
+                data-bs-toggle="modal"
+                data-bs-target="#modalDeleteOneContact"
+        >
+            {% include 'icons/trash.html.twig' %}
+
+        </button>
+    </td>
+</tr>

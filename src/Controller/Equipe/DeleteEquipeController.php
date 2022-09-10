@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Controller\Entreprise;
+namespace App\Controller\Equipe;
 
 use App\Controller\CustomAbstractController;
 use App\Service\QueryService;
-use App\Store\Entreprise\EntrepriseStore;
+use App\Store\Equipe\EquipeStore;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class DeleteEntrepriseController extends CustomAbstractController
+class DeleteEquipeController extends CustomAbstractController
 {
-    public function __construct(private readonly EntrepriseStore $entrepriseStore,
+    public function __construct(private readonly EquipeStore $entrepriseStore,
     private readonly TranslatorInterface                     $translator,
     private QueryService                                     $queryService
     )

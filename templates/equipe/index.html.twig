@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% trans_default_domain 'entreprise' %}
+{% trans_default_domain 'equipe' %}
 
 {% block title %}Hello EntrepriseController!{% endblock %}
 
@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="d-flex">
                     <h1>
-                        {{ filiale ? "filiales"|trans({}, "menu") : "entreprises"|trans({}, "menu") }}
+                        {{ "equipes"|trans({}, "menu") }}
                     </h1>
                     <div class="ms-auto d-flex my-auto">
                         <div class="d-flex my-auto">
@@ -28,25 +28,27 @@
                         <a
                                 class="btn btn-default btn-orange"
                         >
-                            <span>{{ filiale ? ("ajouter_filiale"|trans) : ("ajouter_entreprise"|trans)}}</span>
+                            <span>{{ "ajouter_equipe"|trans }}</span>
                         </a>
                     </div>
                 </div>
             </div>
             <div>
-                {% if entreprises|length > 0 %}
+                {% if equipes|length > 0 %}
                     <table class="table" id="table">
                         <thead>
                         <tr>
-                            <th class="title entreprise_raison_cell" scope="col">
-                                {{ "raison_sociale"|trans }}
+                            <th class="title equipe_id_cell" scope="col">
+                                {{ t("identifiant") }}
                             </th>
-                            <th class="title entreprise_siret_cell" scope="col">
-                                {{ "siren"|trans }}
+                            <th class="title equipe_libelle_cell" scope="col">
+                                {{ t("libelle") }}
                             </th>
-                            <th class="title entreprise_type_cell" scope="col">
-                                {{ "type"|trans }}
+                            <th class="title equipe_eds_cell" scope="col">EDS</th>
+                            <th class="title equipe_service_cell" scope="col">
+                                {{ t("services") }}
                             </th>
+                            <th class="equipe_replace_cell"></th>
                             <th class="entreprise_checkbox_cell">
                                 <input
                                         class="form-check-input"
@@ -60,7 +62,7 @@
                                             type="submit"
                                             class="btn-trash"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#modalDeleteMultipleEntreprises"
+                                            data-bs-target="#modalDeleteMultipleEquipes"
                                             id="trash"
                                     >
                                         {% include 'icons/trash.html.twig' %}
@@ -70,14 +72,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {% for entreprise in entreprises %}
-                            {% include "/entreprise/item.html.twig" with entreprise %}
+                        {% for equipe in equipes %}
+                            {% include "/equipe/item.html.twig" with equipe %}
                         {% endfor %}
                         </tbody>
                     </table>
                     {% else %}
                         <h1 class="mt-3 text-center">
-                            {{ "aucune_entreprise"|trans }}
+                            {{ "aucune_equipe"|trans }}
                         </h1>
                 {% endif %}
                 {% include 'pagination/pagination.html.twig' with pages %}

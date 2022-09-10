@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace App\Store\Entreprise;
+namespace App\Store\Equipe;
 
 use App\Store\ApiStore;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
@@ -13,7 +13,7 @@ use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
-class EntrepriseStore extends ApiStore
+class EquipeStore extends ApiStore
 {
     /**
      * @throws TransportExceptionInterface
@@ -22,20 +22,12 @@ class EntrepriseStore extends ApiStore
      * @throws DecodingExceptionInterface
      * @throws ClientExceptionInterface
      */
-    public function getEntreprises(): array
+    public function getEquipes(): array
     {
-        return $this->get();
-    }
-    public function get(array $additionalQuery = []): array
-    {
-        $reponse = $this->api->getAll('fr/api/entreprises', $this->getQuery($additionalQuery));
-        $entreprises = $reponse['hydra:member'];
+        $reponse = $this->api->getAll('fr/api/equipes', $this->getQuery());
+        $equipes = $reponse['hydra:member'];
         $pages = $this->paginationService->getPages($reponse['hydra:view'] ?? []);
-        return [$entreprises, $pages];
-    }
-    public function getFiliales(): array
-    {
-        return $this->get(['entiteGroupe' => true]);
+        return [$equipes, $pages];
     }
 
     /**

@@ -7,17 +7,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ListeEntrepriseController extends AbstractController
+class ListeFilialeController extends AbstractController
 {
     public function __construct(
-    private readonly EntrepriseFilialeController $controller
+        private readonly EntrepriseFilialeController $controller
     )
     {
     }
 
-    #[Route('/entreprises', name: 'entreprise_list')]
+    #[Route('/filiales', name: 'filiale_list')]
     public function index(Request $request): Response
     {
-       return $this->controller->r($request);
+        return $this->controller->r($request, ['filiale' => true]);
+
     }
 }
