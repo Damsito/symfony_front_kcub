@@ -40,9 +40,17 @@ class Api
                 'password' => $this->back_password
             ]
         ]);
-        return $response->toArray()['token'];
+        $array = $response->toArray(false) ?? [];
+        return $array['token'] ?? "";
     }
 
+    /**
+     * @throws TransportExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws ClientExceptionInterface
+     */
     private function getClient(): HttpClientInterface
     {
         return $this->client->withOptions([

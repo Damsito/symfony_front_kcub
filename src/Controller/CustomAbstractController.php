@@ -17,18 +17,5 @@ class CustomAbstractController extends AbstractController
                 return false;
         return true;
     }
-    protected function getQuery(Request $request): array
-    {
-        $referer = $request->headers->get('referer');
-        $url_components = parse_url($referer);
-        $queryArray = array();
-        parse_str($url_components['query'], $queryArray);
-        $changePage = $request->query->get('changePage', false);
-        $page = $request->query->get('page', 1);
-        if($page !== 1 && $changePage) {
-            $page = $page - 1;
-        }
 
-        return array_replace($queryArray, ['page' => $page]);
-    }
 }

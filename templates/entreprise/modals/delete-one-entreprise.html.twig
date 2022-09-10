@@ -1,6 +1,6 @@
-<div id="myModal" class="modal" tabindex="-1">
+<div id="modalDeleteOneEntreprise" class="modal" tabindex="-1">
     <div class="modal-dialog">
-        <form class="modal-content">
+        <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ "question_delete_entreprise"|trans }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal">
@@ -14,27 +14,31 @@
                         type="button"
                         class="btn btn-secondary"
                         id="non"
+                        data-bs-dismiss="modal"
                 >
                     {{ "non"|trans }}
                 </button>
-                <button
-                        type="submit"
-                        class="btn btn-primary"
-                        id="oui"
-                >
-                    {{ "oui"|trans }}
-                </button>
+                <form method="post" action="{{ path('entreprise_delete') }}">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="page" value="{{ app.request.query.get('page', 1) }}">
+                    <input type="hidden" name="type" value="{{ app.request.query.get('type') }}">
+                    <input type="hidden" name="recherche" value="{{ app.request.query.get('recherche') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete') }}">
+                    <button
+                            type="submit"
+                            class="btn btn-primary"
+                            id="oui"
+                    >
+                        {{ "oui"|trans }}
+                    </button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 {% block javascripts %}
     <script defer type="application/javascript">
-        document.getElementById('oui').addEventListener('click', function (e){
-            e.preventDefault()
-            let ids = localStorage.getItem('checkboxes')
-            $.DELETE('{{ path('entreprise_delete', {ids: ids}) }}')
-        })
+
     </script>
 {% endblock %}

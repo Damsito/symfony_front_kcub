@@ -4,7 +4,10 @@
 {% block title %}Hello EntrepriseController!{% endblock %}
 
 {% block body %}
-        <div class="container-perso">
+    {% include 'entreprise/modals/delete-multiple-entreprise.html.twig' %}
+    {% include 'entreprise/modals/delete-one-entreprise.html.twig' %}
+
+    <div class="container-perso">
             <div class="row">
                 <div class="d-flex">
                     <h1>{{ "entreprises"|trans({}, "menu") }}</h1>
@@ -46,28 +49,21 @@
                                 <input
                                         class="form-check-input"
                                         type="checkbox"
-                                        id="entreprise_checkbox_all_delete"
+                                        id="checkbox_all_delete"
                                 />
                             </th>
                             <th class="entreprise_edit_cell"></th>
                             <th class="entreprise_trash_cell">
-                                <form
-                                        {{ stimulus_controller('submit-confirm') }}
-                                        data-action="submit-confirm#onSubmitMultiple"
-                                        data-title="{{ "question_delete_multiple_entreprises"|trans }}"
-                                        data-confirm="{{ "oui"|trans({}, 'messages') }}"
-                                        data-cancel="{{ "non"|trans({}, 'messages') }}"
-                                        data-path="{{ path('entreprise_delete_multiple') }}"
-                                >
                                     <button
                                             type="submit"
                                             class="btn-trash"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalDeleteMultipleEntreprises"
                                             id="trash"
                                     >
                                         {% include 'icons/trash.html.twig' %}
 
                                     </button>
-                                </form>
                             </th>
                         </tr>
                         </thead>
@@ -87,11 +83,7 @@
         </div>
     {% block javascripts %}
         {{ parent() }}
-        <script defer type="application/javascript">
-            document.getElementById('entreprise_filter_type').addEventListener('change', function(e){
-                e.preventDefault()
-                document.getElementById('buttonSearch').click();
-            })
-        </script>
-        {% endblock %}
+        {{ encore_entry_script_tags('entreprise') }}
+
+    {% endblock %}
 {% endblock %}

@@ -19,13 +19,17 @@ class QueryService
     {
         $data->setPage(1);
         $arr_replace = array_replace($request->query->all(), $data->getQuery());
-        $arr_filtered = array_filter($arr_replace, function($v, $k) {
+        $arr_filtered = $this->getFilteredQuery($arr_replace);
+        return new RedirectResponse($this->router->generate($request->attributes->get('_route'), $arr_filtered));
+    }
+    public function getFilteredQuery($arr_replace): array
+    {
+        return  array_filter($arr_replace, function($v, $k) {
             if($k === 'page'){
                 return $v !== 1;
             } else {
                 return !is_null($v) && strlen($v) > 0;
             }
         }, ARRAY_FILTER_USE_BOTH);
-        return new RedirectResponse($this->router->generate($request->attributes->get('_route'), $arr_filtered));
     }
 }
