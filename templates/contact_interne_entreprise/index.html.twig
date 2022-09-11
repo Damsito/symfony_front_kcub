@@ -7,7 +7,7 @@
     <div class="container-perso">
         <div class="row">
             <div class="d-flex">
-                <h1>{{ "contact_interne_groupe"|trans }}</h1>
+                <h1>{{ "contacts_interne_orange"|trans({}, 'menu') }}</h1>
                 <div class="ms-auto d-flex my-auto">
                     <div class="d-flex my-auto">
                         {{ form_start(formSort, {'attr': {'class': 'd-flex w-100 align-items-center'}}) }}
@@ -26,31 +26,18 @@
                     <tr>
                         <th class="title ce_nom_prenom_cell" scope="col">
                             <div class="d-flex">
-                                {{ "nom"|trans }} - {{ "prenom"|trans }}
+                                {{ "nom"|trans({}, 'messages') }} - {{ "prenom"|trans({}, 'messages') }}
                                 <button id="button_sort" type="submit" class="d-none"></button>
                                 {{ form_end(formSort) }}
-                                {% set sort = app.request.query.get('sort', 'asc') %}
-                                <button id="sort" class="d-flex ms-1">
-                                    {% if sort == 'asc' %}
-                                        <img
-                                                src="{{ asset('/images/sort-up.png') }}"
-                                                alt="sort"
-                                        />
-                                    {% else %}
-                                        <img
-                                                src="{{ asset('/images/sort-down.png') }}"
-                                                alt="sort"
-                                        />
-                                    {% endif %}
-                                </button>
+                                {% include 'icons/sort.html.twig' %}
                             </div>
                         </th>
                         <th class="title ce_email_cell" scope="col">Email</th>
                         <th class="title ce_entreprise_cell" scope="col">
-                            {{ "filiale"|trans }}
+                            {{ "filiale"|trans({}, 'entreprise') }}
                         </th>
                         <th class="title ce_fonction_cell">
-                            {{ "fonction"|trans }}
+                            {{ "fonction"|trans({}, 'messages') }}
                         </th>
                         <th class="ce_edit_cell"></th>
                         <th class="ce_checkbox_cell">

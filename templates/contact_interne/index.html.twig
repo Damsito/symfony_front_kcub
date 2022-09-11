@@ -7,7 +7,7 @@
     <div class="container-perso">
         <div class="row">
             <div class="d-flex">
-                <h1>{{ "contact_interne"|trans }}</h1>
+                <h1>{{ "contact_interne"|trans({}, 'menu') }}</h1>
                 <div class="ms-auto d-flex my-auto">
                     <div class="d-flex my-auto">
                         {{ form_start(formSort, {'attr': {'class': 'd-flex w-100 align-items-center'}}) }}
@@ -26,27 +26,14 @@
                     <tr>
                         <th class="title ci_nom_prenom_cell" scope="col">
                             <div class="d-flex">
-                                {{ "nom"|trans }}
+                                {{ "nom"|trans({}, 'messages') }}
                                 <button id="button_sort" type="submit" class="d-none"></button>
                                 {{ form_end(formSort) }}
-                                {% set sort = app.request.query.get('sort', 'asc') %}
-                                <button id="sort" class="d-flex ms-1">
-                                    {% if sort == 'asc' %}
-                                        <img
-                                                src="{{ asset('/images/sort-up.png') }}"
-                                                alt="sort"
-                                        />
-                                    {% else %}
-                                        <img
-                                                src="{{ asset('/images/sort-down.png') }}"
-                                                alt="sort"
-                                        />
-                                    {% endif %}
-                                </button>
+                               {% include 'icons/sort.html.twig' %}
                             </div>
                         </th>
                         <th class="title ci_nom_prenom_cell" scope="col">
-                            {{ "prenom"|trans }}
+                            {{ "prenom"|trans({}, 'messages') }}
                         </th>
                         <th class="title ci_type_cell" scope="col">Type</th>
                         <th class="title ci_services_associes_cell" scope="col">

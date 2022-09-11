@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="d-flex">
                     <h1>
-                        {{ "equipes"|trans({}, "menu") }}
+                        {{ "equipes"|trans }}
                     </h1>
                     <div class="ms-auto d-flex my-auto">
                         <div class="d-flex my-auto">
@@ -39,14 +39,14 @@
                         <thead>
                         <tr>
                             <th class="title equipe_id_cell" scope="col">
-                                {{ t("identifiant") }}
+                                {{ "identifiant"|trans }}
                             </th>
                             <th class="title equipe_libelle_cell" scope="col">
-                                {{ t("libelle") }}
+                                {{ "libelle"|trans }}
                             </th>
                             <th class="title equipe_eds_cell" scope="col">EDS</th>
                             <th class="title equipe_service_cell" scope="col">
-                                {{ t("services") }}
+                                {{ "services"|trans({}, "messages") }}
                             </th>
                             <th class="equipe_replace_cell"></th>
                             <th class="entreprise_checkbox_cell">

@@ -1,0 +1,14 @@
+{% set sort = app.request.query.get('sort', 'asc') %}
+<button id="sort" class="d-flex ms-1 border-0">
+    {% if sort == 'asc' %}
+        <img
+                src="{{ asset('/images/sort-up.png') }}"
+                alt="sort"
+        />
+    {% else %}
+        <img
+                src="{{ asset('/images/sort-down.png') }}"
+                alt="sort"
+        />
+    {% endif %}
+</button>

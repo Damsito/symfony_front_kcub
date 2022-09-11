@@ -1,0 +1,5 @@
+confirm_replace: 'Confirmez-vous le remplacement de {old} par {new} sur tous les services ?'
+confirm_replace_multiple_services: 'Confirmez-vous le remplacement de {old} par {new} sur les services sélectionnés ?'
+confirm_replace_one_service: 'Confirmez-vous le remplacement de {old} par {new} sur ce service ?'
+confirm_replace_groupe_service: 'Confirmez-vous le remplacement du groupe {old} par {new} ?'
+replace_equipe_service: "Remplacer l'équipe {name} par :"

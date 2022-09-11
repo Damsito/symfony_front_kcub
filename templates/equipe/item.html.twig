@@ -15,7 +15,7 @@
     </td>
     <td class="equipe_service_cell">
         {% if equipe.equipeInterneServices|length == 0 %}
-            <span>{{ t("aucun") }}</span>
+            <span>{{ "aucun"|trans({}, 'messages') }}</span>
             {% else %}
                 <button
                         type="button"

@@ -1,0 +1,5 @@
+confirm_replace: 'Do you confirm the replacement of {old} by {new} on all the services ?'
+confirm_replace_multiple_services: 'Do you confirm the replacement of {old} by {new} on the selected services ?'
+confirm_replace_one_service: 'Do you confirm the replacement of {old} by {new} on this service ?'
+confirm_replace_groupe_service: 'Do you confirm the replacement of the group {old} by {new} ?'
+replace_equipe_service: "Replace the team {name} by :"

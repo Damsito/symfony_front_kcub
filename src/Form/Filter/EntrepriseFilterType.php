@@ -21,7 +21,7 @@ class EntrepriseFilterType extends AbstractType
         $builder
             ->add('type', ChoiceType::class, [
                 'choices' => [
-                    $this->translator->trans('all' ) => '',
+                    $this->translator->trans('tous' ) => '',
                     $this->translator->trans('client', [], 'entreprise') => 'client',
                     $this->translator->trans('partenaire', [], 'entreprise') => 'partenaire',
                     $this->translator->trans('fournisseur', [], 'entreprise') => 'fournisseur',
